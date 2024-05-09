@@ -1,4 +1,6 @@
 # classicfm-discord-bot
+![image](https://github.com/szeremeta1/classicfm-discord-bot/assets/66704967/9e0d5bde-b57f-4474-b16e-a1ab552c119d)
+
 A bot that constantly streams ClassicFM, a British classical music radio station, into a Discord voice channel of the user's choosing.
 
 This bot uses an **m3u8** stream as its source and joins a channel of the user's choosing until it is forcefully disconnected. This can be helpful if you want to just make a voice channel for peacefully listening to classical music, and **it can be used with any mp3 or m3u8 stream**. 

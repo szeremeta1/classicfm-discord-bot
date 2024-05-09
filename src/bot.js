@@ -3,6 +3,7 @@ const Discord = require('discord.js');
 const dVC = require('@discordjs/voice');
 const prism = require('prism-media');
 const fs = require('fs');
+const cron = require('node-cron');
 
 const client = new Discord.Client({
 	intents: [
@@ -17,6 +18,10 @@ const prefix = '!';
 
 client.once('ready', () => {
   console.log('Bot is ready!');
+  cron.schedule('0 0 * * *', () => {
+    console.log('Restarting bot...');
+    process.exit();
+  });
 });
 
 client.on('messageCreate', async message => {

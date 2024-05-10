@@ -1,5 +1,6 @@
 # classicfm-discord-bot
-![image](https://github.com/usermeta1/classicfm-discord-bot/assets/66704967/9e0d5bde-b57f-4474-b16e-a1ab552c119d)
+![Classic_FM_logo svg](https://github.com/szeremeta1/classicfm-discord-bot/assets/66704967/a370d30e-8278-4124-afd0-84252c061d49)
+
 
 A bot that constantly streams ClassicFM, a British classical music radio station, into a Discord voice channel of the user's choosing.
 

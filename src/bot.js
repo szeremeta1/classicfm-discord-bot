@@ -18,10 +18,6 @@ const prefix = '!';
 
 client.once('ready', () => {
   console.log('Bot is ready!');
-  cron.schedule('0 0 * * *', () => {
-    console.log('Restarting bot...');
-    process.exit();
-  });
 });
 
 client.on('messageCreate', async message => {
@@ -57,6 +53,8 @@ client.on('messageCreate', async message => {
   )  }
 });
 
+let streamJob = null;
+
 function JoinChannel(channel, track, volume) {
   const connection = dVC.joinVoiceChannel({
       channelId: channel.id,
@@ -64,7 +62,6 @@ function JoinChannel(channel, track, volume) {
       adapterCreator: channel.guild.voiceAdapterCreator,
       selfDeaf: true
   });
-
 
   const resource = dVC.createAudioResource(track, {inlineVolume: true, silencePaddingFrames: 5});
   const player = dVC.createAudioPlayer();
@@ -94,6 +91,16 @@ function JoinChannel(channel, track, volume) {
   player.on('idle', () => {
       connection.destroy();
   })
+
+  // Schedule a cron job to restart the stream every 15 minutes
+  if (streamJob) {
+    streamJob.stop();
+  }
+  streamJob = cron.schedule('*/15 * * * *', () => {
+    console.log('Restarting stream...');
+    player.stop();
+    player.play(resource);
+  });
 }
 
 function LeaveVoiceChannel(channel) {

@@ -1,4 +1,4 @@
-# classicfm-discord-bot
+# ClassicFM Discord Bot
 ![Classic_FM_logo svg](https://github.com/szeremeta1/classicfm-discord-bot/assets/66704967/a370d30e-8278-4124-afd0-84252c061d49)
 
 

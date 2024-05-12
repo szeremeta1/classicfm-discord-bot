@@ -20,6 +20,8 @@ client.once('ready', () => {
   console.log('Bot is ready!');
 });
 
+const resource = dVC.createAudioResource('https://icecast.thisisdax.com/ClassicFM', {inlineVolume: true, silencePaddingFrames: 5});
+
 client.on('messageCreate', async message => {
   if (!message.content.startsWith(prefix) || message.author.bot) return;
 
@@ -48,14 +50,14 @@ client.on('messageCreate', async message => {
       const streamURL = lines[0];
     
       console.log(`Playing stream: ${streamURL}`);
-      JoinChannel(voiceChannel, 'https://icecast.thisisdax.com/ClassicFM', 2);
+      JoinChannel(voiceChannel, resource, 2);
     }
   )  }
 });
 
 let streamJob = null;
 
-function JoinChannel(channel, track, volume) {
+function JoinChannel(channel, resource, volume) {
   const connection = dVC.joinVoiceChannel({
       channelId: channel.id,
       guildId: channel.guild.id,
@@ -80,7 +82,6 @@ function JoinChannel(channel, track, volume) {
     }
 });
 
-  const resource = dVC.createAudioResource(track, {inlineVolume: true, silencePaddingFrames: 5});
   const player = dVC.createAudioPlayer();
   resource.volume.setVolume(2);
   connection.subscribe(player)
@@ -118,13 +119,13 @@ function JoinChannel(channel, track, volume) {
     player.stop();
     player.play(resource);
   });
-}
-
-function LeaveVoiceChannel(channel) {
-  // Get resource, player, etc, and destroy them
-  const connection = dVC.getVoiceConnection(channel.guild.id);
-  if (connection) {
-      connection.destroy();
   }
-}
-client.login(config.token).catch(error => console.error(`Login error: ${error}`)); // Log any login errors
+
+  function LeaveVoiceChannel(channel) {
+    // Get resource, player, etc, and destroy them
+    const connection = dVC.getVoiceConnection(channel.guild.id);
+    if (connection) {
+        connection.destroy();
+    }
+  }
+  client.login(config.token).catch(error => console.error(`Login error: ${error}`)); // Log any login errors

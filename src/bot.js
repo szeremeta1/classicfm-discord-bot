@@ -62,23 +62,6 @@ function JoinChannel(channel, track, volume) {
       adapterCreator: channel.guild.voiceAdapterCreator,
       selfDeaf: true
   });
-  
-  connection.on(dVC.VoiceConnectionStatus.Disconnected, async () => {
-    let attemptReconnect = true;
-    while (attemptReconnect) {
-        try {
-            console.log("Disconnected. Attempting to reconnect...");
-            await Promise.race([
-                entersState(connection, dVC.VoiceConnectionStatus.Signalling, 5_000),
-                entersState(connection, dVC.VoiceConnectionStatus.Connecting, 5_000),
-            ]);
-            console.log("Reconnected successfully.");
-            attemptReconnect = false;
-        } catch (error) {
-            console.log("Reconnection attempt failed. Retrying...");
-        }
-    }
-});
 
   const resource = dVC.createAudioResource(track, {inlineVolume: true, silencePaddingFrames: 5});
   const player = dVC.createAudioPlayer();

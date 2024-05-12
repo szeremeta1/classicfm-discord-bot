@@ -11,10 +11,11 @@ Like any other bot, this requires that you make an application (bot) in the [Dis
 This mini project quite literally would not have been possible without [@ChrisChrome](https://github.com/ChrisChrome), who basically made the whole fucking thing work and showed me the limitations of both Discord bots and JavaScript as a whole.
 
 ## How To Use
-First, clone this GitHub repository and open it.
+First, clone this GitHub repository, open it, and install dependencies.
 ```
-git clone https://github.com/usermeta1/classicfm-discord-bot.git
+git clone https://github.com/szeremeta1/classicfm-discord-bot.git
 cd classicfm-discord-bot.git
+npm i
 ```
 
 Next, add your bot token you obtained from the Discord Developer Portal.

@@ -14,7 +14,7 @@ This mini project quite literally would not have been possible without [@ChrisCh
 First, clone this GitHub repository, open it, and install dependencies.
 ```
 git clone https://github.com/szeremeta1/classicfm-discord-bot.git
-cd classicfm-discord-bot.git
+cd classicfm-discord-bot
 npm i
 ```
 
